@@ -1,7 +1,15 @@
 ﻿string pangram = "The quick brown fox jumps over the lazy dog";
 
-char[] pangramArray = pangram.ToCharArray();
-Array.Reverse(pangramArray);
+string[] pangramWords = pangram.Split(" ");
 
-string result = String.Join("", pangramArray);
+for (int i = 0; i < pangramWords.Length; i++)
+{
+    char[] charArray = pangramWords[i].ToCharArray();
+    Array.Reverse(charArray);
+    string reversedWord = String.Join("", charArray);
+
+    pangramWords[i] = reversedWord;
+}
+
+string result = String.Join(" ", pangramWords);
 Console.WriteLine(result);
