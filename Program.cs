@@ -1,13 +1,31 @@
-﻿string orderStream = "B123,C234,A345,C15,B177,G3003,C235,B179";
+﻿string first = "Hello";
+string second = "World";
+string result = string.Format("{0} {1}!", first, second);
+Console.WriteLine(result);
 
-string[] orders = orderStream.Split(",");
-Array.Sort(orders);
+Console.WriteLine("{1} {0}!", first, second);
+Console.WriteLine("{0} {0} {0}!", first, second);
 
-string[] tag = new string[orders.Length];
+Console.WriteLine($"{first} {second}!");
+Console.WriteLine($"{second} {first}!");
+Console.WriteLine($"{first} {first} {first}!");
 
-for (int i = 0; i < orders.Length; i++)
-{
-    string order = orders[i];
-    Console.Write(order);
-    Console.WriteLine(order.Length == 4 ? "" : $"\t - Error");
-}
+
+decimal price = 67.55m;
+int discount = 50;
+Console.WriteLine($"Price: {price:C} (Save {discount:C})");
+
+decimal measurement = 123456.78912m;
+Console.WriteLine($"Measurement: {measurement:N} units");
+Console.WriteLine($"Measurement: {measurement:N4} units");
+
+decimal tax = .36785m;
+Console.WriteLine($"Tax rate: {tax:P2}");
+
+decimal salePrice = 59.99m;
+
+string yourDiscount = String.Format("You saved {0:C2} off the regular {1:C2} price. ", (price - salePrice), price);
+
+Console.WriteLine(yourDiscount);
+
+
