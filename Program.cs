@@ -1,12 +1,13 @@
-﻿int value1 = 11;
-decimal value2 = 6.2m;
-float value3 = 4.3f;
+﻿string orderStream = "B123,C234,A345,C15,B177,G3003,C235,B179";
 
-int result1 = Convert.ToInt32(value1 / value2);
-Console.WriteLine($"Divide value1 by value2, display the result as an int: {result1}");
+string[] orders = orderStream.Split(",");
+Array.Sort(orders);
 
-decimal result2 = value2 / (decimal)value3;
-Console.WriteLine($"Divide value2 by value3, display the result as a decimal: {result2}");
+string[] tag = new string[orders.Length];
 
-float result3 = value3 / (float)value1;
-Console.WriteLine($"Divide value3 by value1, display the result as a float: {result3}");
+for (int i = 0; i < orders.Length; i++)
+{
+    string order = orders[i];
+    Console.Write(order);
+    Console.WriteLine(order.Length == 4 ? "" : $"\t - Error");
+}
