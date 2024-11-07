@@ -1,12 +1,7 @@
-﻿string value = "abc123";
-char[] valueArray = value.ToCharArray();
-Array.Reverse(valueArray);
-// string result = new string(valueArray);
-string result = String.Join(",", valueArray);
-Console.WriteLine(result);
+﻿string pangram = "The quick brown fox jumps over the lazy dog";
 
-string[] items = result.Split(',');
-foreach (string item in items)
-{
-    Console.WriteLine(item);
-}
+char[] pangramArray = pangram.ToCharArray();
+Array.Reverse(pangramArray);
+
+string result = String.Join("", pangramArray);
+Console.WriteLine(result);
