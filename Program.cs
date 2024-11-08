@@ -157,6 +157,7 @@ do
 
             // #4 update to "rotating" animation with countdown
             string[] searchingIcons = { ".  ", ".. ", "..." };
+            string[] searchingIconsCharacteristic = { "/", "-", @"\", "|" };
 
             // loop ourAnimals array to search for matching animals
             for (int i = 0; i < maxPets; i++)
@@ -166,23 +167,20 @@ do
                 {
 
                     // Search combined descriptions and report results
+                    animalNickname = ourAnimals[i, 3].Split(": ")[1];
                     dogDescription = ourAnimals[i, 4] + "\r\n" + ourAnimals[i, 5];
-
-                    for (int j = 5; j > -1; j--)
-                    {
-                        // #5 update "searching" message to show countdown 
-                        foreach (string icon in searchingIcons)
-                        {
-                            Console.Write($"\rsearching our dog {ourAnimals[i, 3]} for {readResult} {icon}");
-                            Thread.Sleep(250);
-                        }
-
-                        Console.Write($"\r{new String(' ', Console.BufferWidth)}");
-                    }
 
                     // #3a iterate submitted characteristic terms and search description for each term
                     foreach (string dogCharacteristic in dogCharacteristics)
                     {
+                        for (int j = 3; j > -1; j--)
+                        {
+                            foreach (string icon in searchingIconsCharacteristic)
+                            {
+                                Console.Write($"\rsearching our dog {animalNickname} for {dogCharacteristic} {icon} {j}");
+                                Thread.Sleep(250);
+                            }
+                        }
                         bool match = false;
                         if (dogCharacteristic == "male")
                             match = !(dogDescription.Contains("female"));
@@ -193,7 +191,6 @@ do
                         {
                             // #3b update message to reflect term 
                             // #3c set a flag "this dog" is a match
-                            animalNickname = ourAnimals[i, 3].Split(": ")[1];
                             Console.WriteLine($"\nOur dog {animalNickname} is a {dogCharacteristic} match!");
                             dogMatched = true;
                             noMatchesDog = false;
