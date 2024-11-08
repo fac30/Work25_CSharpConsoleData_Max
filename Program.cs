@@ -1,28 +1,16 @@
-﻿string customerName = "Ms. Barros";
+﻿const string input = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
 
-string currentProduct = "Magic Yield";
-int currentShares = 2975000;
-decimal currentReturn = 0.1275m;
-decimal currentProfit = 55000000.0m;
+string quantitySearch = "<span>";
+int quantityStart = input.IndexOf(quantitySearch) + quantitySearch.Length;
+int quantityLength = input.IndexOf("</span>") - quantityStart;
+string quantity = input.Substring(quantityStart, quantityLength);
 
-string newProduct = "Glorious Future";
-decimal newReturn = 0.13125m;
-decimal newProfit = 63000000.0m;
+string outputSearch = "<div>";
+int outputStart = input.IndexOf("<div>") + outputSearch.Length;
+int outputLength = input.IndexOf("</div>") - outputStart;
+string output = input.Substring(outputStart, outputLength);
 
-Console.WriteLine($"Dear {customerName},");
-Console.WriteLine($"As a customer of our {currentProduct} offering we are excited to tell you about a new financial product that would dramatically increase your return.\n");
-Console.WriteLine($"Currently, you own {currentShares:N2} shares at a return of {currentReturn:P2}.\n");
-Console.WriteLine($"Our new product, {newProduct} offers a return of {newReturn:P2}.  Given your current volume, your potential profit would be {newProfit:C2}.\n");
+output = output.Replace("&trade", "&reg");
 
-Console.WriteLine("Here's a quick comparison:\n");
-
-string comparisonMessage = currentProduct.PadRight(20);
-comparisonMessage += String.Format("{0:P2}", currentReturn).PadRight(10);
-comparisonMessage += String.Format("{0:C2}", currentProfit).PadRight(20);
-
-comparisonMessage += "\n";
-comparisonMessage += newProduct.PadRight(20);
-comparisonMessage += String.Format("{0:P2}", newReturn).PadRight(10);
-comparisonMessage += String.Format("{0:C2}", newProfit).PadRight(20);
-
-Console.WriteLine(comparisonMessage);
+Console.WriteLine($"Quantity: {quantity}");
+Console.WriteLine($"Output: {output}");
